@@ -170,6 +170,19 @@ export default function ProjectDetail({ project, onClose }) {
             )}
           </Block>
 
+          {project.modules?.length > 0 && (
+            <Block title="All modules">
+              <div className="module-groups">
+                {project.modules.map((m) => (
+                  <div key={m.group} className="module-group">
+                    <h4 className="module-group__title">{m.group}</h4>
+                    <List items={m.items} />
+                  </div>
+                ))}
+              </div>
+            </Block>
+          )}
+
           <Block title="System workflow">
             <Workflow steps={project.workflow} />
           </Block>

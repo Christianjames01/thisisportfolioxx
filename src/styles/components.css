@@ -1144,6 +1144,28 @@
   color: var(--text);
 }
 
+.module-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+
+.module-group__title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 760px) {
+  .module-groups {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail-block:has(.module-groups) .detail-block__body,
 .detail-block:has(.workflow) .detail-block__body,
 .detail-block:has(.shots) .detail-block__body,
 .detail-block:has(.feature-grid) .detail-block__body {

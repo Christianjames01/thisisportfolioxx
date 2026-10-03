@@ -188,9 +188,9 @@ export const projects = [
     kind: 'Academic',
     status: 'School team project',
     summary:
-      'A web system for barangay offices to manage residents, complaints, document requests, and disaster-response records.',
+      'A multi-module barangay management system covering residents, document requests, complaints, social services, disaster response, and office administration.',
     overview:
-      'BarangayLink brings several barangay office tasks into one web application. Residents can file complaints and requests; staff and administrators review, assign, and track them from a dashboard. It also includes disaster-response modules and a weather and typhoon information page.',
+      'BarangayLink brings most of a barangay office’s day-to-day work into one PHP and MySQL web application. Residents can request documents, apply for business permits, file complaints, book health appointments, and follow announcements. Staff and administrators review, assign, and track this work from role-based dashboards. The system also covers disaster response, social-service programs, and internal office records such as finances, inventory, and staff attendance.',
     problem:
       'Barangay offices often handle resident records, complaints, and relief distribution on paper or scattered spreadsheets, which makes requests slow to follow up and hard to monitor.',
     objectives: [
@@ -204,13 +204,71 @@ export const projects = [
     contributions: ['Worked with classmates on a shared PHP codebase as part of a school project.'],
     stack: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'PHPMailer'],
     features: [
-      'Resident records management',
-      'Complaint filing, verification, and status tracking',
-      'Complaint assignment by administrators to staff members',
-      'Role-based access for residents, staff, and administrators',
-      'Dashboard and notifications, including email notifications',
-      'Disaster-response modules: evacuation centers, evacuee registration, relief distribution, damage assessment',
-      'Weather and typhoon information page using public data from Open-Meteo and PAGASA bulletins',
+      'Resident records and role-based access for residents, staff, and administrators',
+      'Document and certificate requests with requirement uploads',
+      'Complaint, blotter, and incident filing with verification and staff assignment',
+      'Business permit applications, processing, renewals, and printing',
+      'Disaster response: evacuation centers, evacuees, relief distribution, damage assessment',
+      'Dashboards with in-app and email notifications',
+    ],
+    // Full module list, grouped — shown in the detail view.
+    modules: [
+      {
+        group: 'Residents & records',
+        items: ['Resident records', 'Barangay officials directory', 'Staff management', 'Resident ID cards with QR code verification'],
+      },
+      {
+        group: 'Requests & permits',
+        items: [
+          'Document requests with requirement uploads and approval',
+          'Certificate generation',
+          'Business permit applications, renewals, and printable permits',
+        ],
+      },
+      {
+        group: 'Complaints & public safety',
+        items: [
+          'Complaint filing, verification, and assignment to staff',
+          'Blotter records',
+          'Incident reporting and response tracking',
+        ],
+      },
+      {
+        group: 'Disaster response',
+        items: [
+          'Evacuation centers and evacuee registration',
+          'Relief inventory and distribution reports',
+          'Damage assessment with printable reports',
+          'Weather and typhoon information from Open-Meteo and PAGASA bulletins',
+        ],
+      },
+      {
+        group: 'Social services',
+        items: [
+          '4Ps beneficiary registration and reports',
+          'Senior citizen records and benefits',
+          'Health appointments, assistance requests, and disease surveillance',
+          'Student records and scholarships',
+        ],
+      },
+      {
+        group: 'Community',
+        items: [
+          'Announcements and events calendar',
+          'Community forum, events, and polls',
+          'Job board and livelihood listings',
+          'Waste collection schedules, recycling info, and issue reports',
+          'Activities and media uploads',
+        ],
+      },
+      {
+        group: 'Office administration',
+        items: [
+          'Budget, revenues, expenses, and fund balance',
+          'Inventory stock-in and stock-out',
+          'Staff attendance, schedules, leave requests, and payslips',
+        ],
+      },
     ],
     planned: [],
     workflow: [
@@ -222,7 +280,7 @@ export const projects = [
     screenshots: [],
     challenges: [
       'Coordinating changes to one shared codebase with several teammates.',
-      'Handling many modules while keeping role permissions consistent.',
+      'Keeping role permissions consistent across more than thirty modules.',
     ],
     lessons: [
       'Clear module boundaries make team development easier.',
