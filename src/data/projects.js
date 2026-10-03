@@ -277,7 +277,39 @@ export const projects = [
       { title: 'Assign', text: 'The complaint is assigned to an authorized staff member.', actor: 'Admin' },
       { title: 'Resolve & track', text: 'Staff update the status, and the resident can follow its progress.', actor: 'Staff' },
     ],
-    screenshots: [],
+    // Captured from a local run of the system, filled with fictional sample records.
+    screenshots: [
+      {
+        src: '/images/projects/barangaylink-dashboard.png',
+        alt: 'BarangayLink admin dashboard with counts of pending incidents, complaints, requests, and residents, plus announcements',
+        caption: 'Admin dashboard (sample data)',
+      },
+      {
+        src: '/images/projects/barangaylink-complaints.png',
+        alt: 'BarangayLink complaints management table with complaint numbers, categories, assigned staff, priority, and status',
+        caption: 'Complaints management with staff assignment',
+      },
+      {
+        src: '/images/projects/barangaylink-residents.png',
+        alt: 'BarangayLink resident management page with verified and pending residents',
+        caption: 'Resident records and verification',
+      },
+      {
+        src: '/images/projects/barangaylink-evacuation.png',
+        alt: 'BarangayLink evacuation centers page showing capacity and occupancy for each center',
+        caption: 'Evacuation centers and capacity',
+      },
+      {
+        src: '/images/projects/barangaylink-typhoon.png',
+        alt: 'BarangayLink typhoon tracker page with current weather, rainfall, and PAGASA signal reference',
+        caption: 'Weather and typhoon information',
+      },
+      {
+        src: '/images/projects/barangaylink-landing.png',
+        alt: 'BarangayLink public landing page listing quick services such as barangay clearance and certificate of residency',
+        caption: 'Public landing page',
+      },
+    ],
     challenges: [
       'Coordinating changes to one shared codebase with several teammates.',
       'Keeping role permissions consistent across more than thirty modules.',
@@ -290,7 +322,7 @@ export const projects = [
       github: 'https://github.com/Christianjames01/repo',
       demo: '',
     },
-    note: 'School team project built with classmates. Not deployed for a real barangay.',
+    note: 'School team project built with classmates. Not deployed for a real barangay. Screenshots are from a local run with fictional sample records.',
   },
 ]
 
