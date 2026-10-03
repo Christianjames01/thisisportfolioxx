@@ -380,18 +380,20 @@ em {
   color: var(--text-2);
 }
 
-/* ─── Scroll reveal (only when JS + motion are allowed) ─────── */
-.reveal-ready .reveal:not(.hero .reveal) {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.7s var(--ease),
-    transform 0.7s var(--ease);
-}
+/* ─── Scroll reveal ─────────────────────────────────────────────
+   Content is visible by default. JavaScript adds .reveal-pending only to
+   elements still below the fold, and removes it as they scroll into view. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    transition:
+      opacity 0.7s var(--ease),
+      transform 0.7s var(--ease);
+  }
 
-.reveal-ready .reveal.is-visible {
-  opacity: 1;
-  transform: none;
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(14px);
+  }
 }
 
 /* Hero: CSS-only entrance so the first screen never waits on scroll detection. */

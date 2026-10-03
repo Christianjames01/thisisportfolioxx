@@ -29,7 +29,7 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) return
     const onKey = (e) => e.key === 'Escape' && setOpen(false)
-    const onResize = () => window.innerWidth > 820 && setOpen(false)
+    const onResize = () => window.innerWidth > 640 && setOpen(false)
     window.addEventListener('keydown', onKey)
     window.addEventListener('resize', onResize)
     return () => {

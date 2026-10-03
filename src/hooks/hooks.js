@@ -4,31 +4,50 @@ const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /**
- * Fades `.reveal` elements in as they scroll into view. Content is fully
- * visible without JavaScript or when the user prefers reduced motion —
- * the hidden state only applies once `html.reveal-ready` is set.
+ * Fades `.reveal` elements in as they scroll into view. Content is visible
+ * by default: only elements that start below the fold get `.reveal-pending`,
+ * and a timed fallback reveals anything left so nothing can stay hidden.
+ * The hero animates with CSS alone and is skipped here.
  */
 export function useReveal() {
   useEffect(() => {
-    if (prefersReducedMotion() || !('IntersectionObserver' in window)) return
-    const root = document.documentElement
-    root.classList.add('reveal-ready')
+    if (prefersReducedMotion()) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
-        }
-      },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
-    )
-    document.querySelectorAll('.reveal:not(.hero .reveal)').forEach((el) => observer.observe(el))
+    const inView = (el) => el.getBoundingClientRect().top < window.innerHeight * 0.92
+    let pending = [...document.querySelectorAll('.reveal')].filter((el) => !el.closest('.hero') && !inView(el))
+    pending.forEach((el) => el.classList.add('reveal-pending'))
+
+    let frame = 0
+    const check = () => {
+      frame = 0
+      pending = pending.filter((el) => {
+        if (!inView(el)) return true
+        el.classList.remove('reveal-pending')
+        return false
+      })
+      if (!pending.length) stop()
+    }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(check)
+    }
+    const revealAll = () => {
+      pending.forEach((el) => el.classList.remove('reveal-pending'))
+      pending = []
+      stop()
+    }
+    const stop = () => {
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+    }
+
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    const fallback = setTimeout(revealAll, 6000)
+
     return () => {
-      observer.disconnect()
-      root.classList.remove('reveal-ready')
+      clearTimeout(fallback)
+      cancelAnimationFrame(frame)
+      revealAll()
     }
   }, [])
 }
